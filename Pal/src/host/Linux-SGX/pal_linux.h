@@ -92,7 +92,8 @@ noreturn void _restore_sgx_context(sgx_cpu_context_t* uc, PAL_XREGS_STATE* xsave
 
 void _DkExceptionHandler(unsigned int exit_info, sgx_cpu_context_t* uc,
                          PAL_XREGS_STATE* xregs_state);
-void _DkHandleExternalEvent(PAL_NUM event, sgx_cpu_context_t* uc, PAL_XREGS_STATE* xregs_state);
+void _DkHandleExternalEvent(enum pal_event event, sgx_cpu_context_t* uc,
+                            PAL_XREGS_STATE* xregs_state);
 
 bool is_tsc_usable(void);
 uint64_t get_tsc_hz(void);

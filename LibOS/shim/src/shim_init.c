@@ -126,7 +126,7 @@ void* allocate_stack(size_t size, size_t protect_size, bool user) {
     }
 
     bool need_mem_free = false;
-    ret = DkVirtualMemoryAlloc(&stack, size + protect_size, 0, PAL_PROT_NONE);
+    ret = DkVirtualMemoryAlloc(&stack, size + protect_size, 0, /*prot=*/0);
     if (ret < 0) {
         goto out_fail;
     }
@@ -555,7 +555,7 @@ int create_pipe(char* name, char* uri, size_t size, PAL_HANDLE* hdl, struct shim
         if (len >= size)
             return -ERANGE;
 
-        ret = DkStreamOpen(uri, 0, 0, 0, 0, &pipe);
+        ret = DkStreamOpen(uri, PAL_ACCESS_RDWR, 0, PAL_CREATE_ALWAYS, 0, &pipe);
         if (ret < 0) {
             if (!use_vmid_for_name && ret == -PAL_ERROR_STREAMEXIST) {
                 /* tried to create a pipe with random name but it already exists */

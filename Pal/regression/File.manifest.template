@@ -1,0 +1,16 @@
+pal.entrypoint = "file:{{ binary_dir }}/File"
+loader.argv0_override = "File"
+loader.log_level = "debug"
+
+fs.mount.root.uri = "file:"
+
+sgx.nonpie_binary = true
+sgx.debug = true
+
+sgx.allowed_files = [
+  "file:{{ binary_dir }}/File",
+  "file:File.manifest",
+  "file:../regression/File.manifest",
+  "file:file_nonexist.tmp",
+  "file:file_delete.tmp",
+]

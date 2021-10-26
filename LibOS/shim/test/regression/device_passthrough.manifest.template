@@ -3,13 +3,13 @@ libos.entrypoint = "device_passthrough"
 loader.env.LD_LIBRARY_PATH = "/lib"
 loader.argv0_override = "device_passthrough"
 
-# the manifest option below has no significance for this specific test, it's added only so that this
-# feature has any test coverage
-libos.check_invalid_pointers = false
-
 fs.mount.gramine_lib.type = "chroot"
 fs.mount.gramine_lib.path = "/lib"
 fs.mount.gramine_lib.uri = "file:{{ gramine.runtimedir() }}"
+
+fs.mount.entrypoint.type = "chroot"
+fs.mount.entrypoint.path = "{{ entrypoint }}"
+fs.mount.entrypoint.uri = "file:{{ binary_dir }}/{{ entrypoint }}"
 
 fs.mount.dev.type = "chroot"
 fs.mount.dev.path = "/dev/host-zero"
@@ -20,5 +20,5 @@ sgx.debug = true
 
 sgx.trusted_files = [
   "file:{{ gramine.runtimedir() }}/",
-  "file:device_passthrough",
+  "file:{{ binary_dir }}/device_passthrough",
 ]

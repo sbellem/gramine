@@ -2,6 +2,7 @@
 .SUFFIXES:
 
 GRAMINE_PKGLIBDIR ?= $(shell python3 -c 'import graminelibos; print(graminelibos._CONFIG_PKGLIBDIR)')
+BINARY_DIR = $(GRAMINE_PKGLIBDIR)/tests/libos/fs
 
 copy_mmap_execs = \
 	copy_mmap_rev \
@@ -28,13 +29,11 @@ execs = \
 
 all_manifests = $(addsuffix .manifest,$(execs))
 
-exec_target = $(execs)
-
-target = \
-	$(exec_target) \
-	$(all_manifests)
+target = $(all_manifests)
 
 clean-extra += clean-tmp
+
+extra_rules = -Dbinary_dir=$(BINARY_DIR)
 
 .PHONY: default
 default: all
@@ -44,9 +43,6 @@ include ../../../../Scripts/manifest.mk
 include ../../../../Scripts/Makefile.Test
 
 ifeq ($(findstring x86_64,$(SYS))$(findstring linux,$(SYS)),x86_64linux)
-
-$(exec_target): %: $(GRAMINE_PKGLIBDIR)/tests/libos/fs/%
-	$(call cmd,symlink)
 
 else
 .IGNORE: $(execs)

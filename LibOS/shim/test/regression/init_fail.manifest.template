@@ -8,6 +8,10 @@ fs.mount.lib.type = "chroot"
 fs.mount.lib.path = "/lib"
 fs.mount.lib.uri = "file:{{ gramine.runtimedir() }}"
 
+fs.mount.entrypoint.type = "chroot"
+fs.mount.entrypoint.path = "{{ entrypoint }}"
+fs.mount.entrypoint.uri = "file:{{ binary_dir }}/{{ entrypoint }}"
+
 # purposefully force mount failure to cause early shim abort
 fs.mount.test.type = "chroot"
 fs.mount.test.path = "/test"
@@ -18,5 +22,5 @@ sgx.debug = true
 
 sgx.trusted_files = [
   "file:{{ gramine.runtimedir() }}/",
-  "file:init_fail",
+  "file:{{ binary_dir }}/init_fail",
 ]

@@ -8,6 +8,10 @@ fs.mount.lib.type = "chroot"
 fs.mount.lib.path = "/lib"
 fs.mount.lib.uri = "file:{{ gramine.runtimedir() }}"
 
+fs.mount.entrypoint.type = "chroot"
+fs.mount.entrypoint.path = "{{ entrypoint }}"
+fs.mount.entrypoint.uri = "file:{{ binary_dir }}/{{ entrypoint }}"
+
 sgx.nonpie_binary = true
 sgx.debug = true
 
@@ -17,5 +21,5 @@ sys.brk.max_size = "512M"
 
 sgx.trusted_files = [
   "file:{{ gramine.runtimedir() }}/",
-  "file:init_fail",
+  "file:{{ binary_dir }}/init_fail",
 ]

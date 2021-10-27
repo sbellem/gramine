@@ -63,6 +63,7 @@ repo_manifests = \
 gen_manifests = $(addsuffix .manifest,$(executables))
 all_manifests = $(repo_manifests) $(gen_manifests)
 
+# Variables passed to `gramine-manifest`
 extra_rules = -Dbinary_dir=$(BINARY_DIR)
 
 target = $(all_manifests)

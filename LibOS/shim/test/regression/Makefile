@@ -131,6 +131,7 @@ target = $(all_manifests)
 
 clean-extra += clean-tmp
 
+# Variables passed to `gramine-manifest`
 extra_rules = \
 	-Dra_client_spid=$(if $(RA_CLIENT_SPID),$(RA_CLIENT_SPID),) \
 	-Dra_client_linkable=$(if $(RA_CLIENT_LINKABLE),$(RA_CLIENT_LINKABLE),0) \
@@ -150,19 +151,13 @@ libos-regression.xml: test_libos.py $(call expand_target_to_token,$(target))
 .PHONY: clean-tmp
 clean-tmp:
 	$(RM) -r \
-		*.cached \
-		*.dat \
 		*.manifest \
 		*.manifest.sgx \
 		*.sig \
-		*.tmp \
 		*.token \
-		*~ \
-		.cache \
 		.pytest_cache \
 		__pycache__ \
-		libos-regression.xml \
+		*.xml \
 		testfile \
 		trusted_testfile \
-		tmp/* \
-		*.o
+		tmp/*

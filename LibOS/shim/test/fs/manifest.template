@@ -19,10 +19,6 @@ fs.mount.host_usr_lib.type = "chroot"
 fs.mount.host_usr_lib.path = "/usr/{{ arch_libdir }}"
 fs.mount.host_usr_lib.uri = "file:/usr/{{ arch_libdir }}"
 
-fs.mount.bin.type = "chroot"
-fs.mount.bin.path = "/bin"
-fs.mount.bin.uri = "file:/bin"
-
 fs.mount.output.type = "chroot"
 fs.mount.output.path = "/mounted"
 fs.mount.output.uri = "file:tmp"

@@ -1,6 +1,6 @@
 loader.preload = "file:{{ gramine.libos }}"
-libos.entrypoint = "openmp"
-loader.argv0_override = "openmp"
+libos.entrypoint = "{{ entrypoint }}"
+loader.argv0_override = "{{ entrypoint }}"
 
 # Gramine optionally provides patched OpenMP runtime library that runs faster inside SGX enclaves
 # (execute `make -C LibOS gcc` to generate it). This library will replace the native one because
@@ -34,7 +34,7 @@ sgx.debug = true
 
 sgx.trusted_files = [
   "file:{{ gramine.runtimedir() }}/",
-  "file:{{ binary_dir }}/openmp",
+  "file:{{ binary_dir }}/{{ entrypoint }}",
 ]
 
 # HACK: Add OpenMP libraries as allowed (not trusted) so that you don't need both of them when

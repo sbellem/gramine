@@ -1,6 +1,6 @@
 loader.preload = "file:{{ gramine.libos }}"
-libos.entrypoint = "bootstrap_cpp"
-loader.argv0_override = "bootstrap_cpp"
+libos.entrypoint = "{{ entrypoint }}"
+loader.argv0_override = "{{ entrypoint }}"
 
 loader.env.LD_LIBRARY_PATH = "/lib:{{ arch_libdir }}:/usr/{{ arch_libdir }}"
 # Preload libunwind so that it has precedence over libstdc++ when resolving stack-unwinding routines
@@ -32,5 +32,5 @@ sgx.trusted_files = [
   "file:/usr{{ arch_libdir }}/libstdc++.so.6",
   "file:/usr{{ arch_libdir }}/libunwind.so.8",
   "file:{{ arch_libdir }}/liblzma.so.5",
-  "file:{{ binary_dir }}/bootstrap_cpp",
+  "file:{{ binary_dir }}/{{ entrypoint }}",
 ]

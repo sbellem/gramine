@@ -1,7 +1,7 @@
 loader.preload = "file:{{ gramine.libos }}"
-libos.entrypoint = "device_passthrough"
+libos.entrypoint = "{{ entrypoint }}"
 loader.env.LD_LIBRARY_PATH = "/lib"
-loader.argv0_override = "device_passthrough"
+loader.argv0_override = "{{ entrypoint }}"
 
 fs.mount.gramine_lib.type = "chroot"
 fs.mount.gramine_lib.path = "/lib"
@@ -20,5 +20,5 @@ sgx.debug = true
 
 sgx.trusted_files = [
   "file:{{ gramine.runtimedir() }}/",
-  "file:{{ binary_dir }}/device_passthrough",
+  "file:{{ binary_dir }}/{{ entrypoint }}",
 ]

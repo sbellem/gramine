@@ -17,7 +17,11 @@ python_src = [
 ]
 
 if enable_tests
-    python_src += 'regression.py'
+    python_src += [
+        'ninja_syntax.py',
+        'regression.py',
+        'test.py',
+    ]
 endif
 
 if sgx

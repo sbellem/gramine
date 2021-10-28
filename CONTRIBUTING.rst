@@ -184,27 +184,33 @@ directory with ``-Dtests=enabled`` and install Gramine::
 To run the PAL tests::
 
    cd Pal/regression
-   make regression
+   gramine-test pytest -v
 
 For SGX, one needs to do the following::
 
    cd Pal/regression
-   make SGX=1 regression
-
-One can run tests manually (prepend the command with ``SGX=1`` or
-``PAL_HOST=Linux-SGX`` to run the SGX variant)::
-
-   /path/to/gramine/Scripts/run-pytest -v -rs test_pal.py
-   SGX=1 /path/to/gramine/Scripts/run-pytest -v -rs test_pal.py
+   gramine-test --sgx pytest -v
 
 It is also possible to run subset of tests::
 
-   /path/to/gramine/Scripts/run-pytest -v -rs test_pal.py::TC_01_Bootstrap
-   /path/to/gramine/Scripts/run-pytest -v -rs test_pal.py::TC_01_Bootstrap::test_100_basic_boostrapping
+   gramine-test pytest -v -rs test_pal.py::TC_01_Bootstrap
+   gramine-test -v -rs test_pal.py::TC_01_Bootstrap::test_100_basic_boostrapping
 
-The ``run-pytest`` script is a wrapper for `pytest
+The ``gramine-test pytest`` command is a wrapper for `pytest
 <https://docs.pytest.org/en/stable/usage.html>`__ and accepts the same
 command-line options.
+
+It is also possible to run a single test binary without the Python harness::
+
+   gramine-test run Bootstrap
+
+or build a manifest and then run the binary directly::
+
+   gramine-test build Bootstrap
+   gramine-direct Bootstrap
+
+For more information, run ``gramine-test --help`` and ``gramine-test <command>
+--help``.
 
 The shim unit tests work similarly, and are under
 :file:`LibOS/shim/test/regression`.

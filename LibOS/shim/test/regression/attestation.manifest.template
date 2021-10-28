@@ -21,8 +21,12 @@ sgx.nonpie_binary = true
 sgx.debug = true
 sgx.remote_attestation = true
 
-sgx.ra_client_spid = "{{ ra_client_spid }}"
-sgx.ra_client_linkable = {{ ra_client_linkable }}
+sgx.ra_client_spid = "{{ env.get('RA_CLIENT_SPID', '') }}"
+{% if env.get('RA_CLIENT_LINKABLE', '0') == '1' -%}
+sgx.ra_client_linkable = true
+{%- else -%}
+sgx.ra_client_linkable = false
+{%- endif %}
 
 sgx.trusted_files = [
   "file:{{ gramine.runtimedir() }}/",

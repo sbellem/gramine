@@ -41,3 +41,7 @@ Command line arguments
     Path to the output file containing SIGSTRUCT. If not provided,
     `manifest_file` will be used with ".manifest" (if present) removed from
     the end and with ".sig" appended.
+
+.. option:: --quiet, -q
+
+    Don't print details to standard output.

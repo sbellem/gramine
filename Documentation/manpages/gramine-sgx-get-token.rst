@@ -27,3 +27,7 @@ Command line arguments
 .. option:: --output token_file, -o token_file
 
    Path to the output token file.
+
+.. option:: --quiet, -q
+
+    Don't print details to standard output.

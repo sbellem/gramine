@@ -88,9 +88,6 @@ struct __kernel_sigaction {
     __sigset_t sa_mask;
 };
 
-/* linux/aio_abi.h (for io_setup which has no glibc wrapper) */
-typedef unsigned long aio_context_t;
-
 /* linux/rlimit.h */
 struct __kernel_rusage {
     struct __kernel_timeval ru_utime; /* user time used */

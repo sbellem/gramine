@@ -87,7 +87,7 @@ static enum pal_event signal_to_pal_event(int sig) {
         case SIGCONT:
             return PAL_EVENT_INTERRUPTED;
         default:
-            assert(!"Unexpected signal number!");
+            BUG();
     }
 }
 

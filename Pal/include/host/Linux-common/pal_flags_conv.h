@@ -45,7 +45,7 @@ static inline int PAL_ACCESS_TO_LINUX_OPEN(enum pal_access access) {
         case PAL_ACCESS_RDWR:
             return O_RDWR;
         default:
-            assert(!"Invalid access mode");
+            BUG();
     }
 }
 
@@ -56,7 +56,7 @@ static inline int PAL_CREATE_TO_LINUX_OPEN(enum pal_create_mode create) {
         return O_CREAT;
     if (create == PAL_CREATE_ALWAYS)
         return O_CREAT | O_EXCL;
-    assert(!"Invalid create mode");
+    BUG();
 }
 
 static inline int PAL_OPTION_TO_LINUX_OPEN(pal_stream_options_t options) {

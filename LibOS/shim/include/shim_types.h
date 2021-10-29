@@ -132,14 +132,6 @@ __attribute__((packed));
 ;
 #endif
 
-/* bits/ustat.h */
-struct __kernel_ustat {
-    __daddr_t f_tfree; /* Number of free blocks. */
-    __ino_t f_tinode;  /* Number of free inodes. */
-    char f_fname[6];
-    char f_fpack[6];
-};
-
 /* bits/socket.h */
 enum {
     MSG_OOB      = 0x01,   /* Process out-of-band data. */

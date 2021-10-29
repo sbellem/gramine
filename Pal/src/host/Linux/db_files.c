@@ -60,7 +60,7 @@ static int file_open(PAL_HANDLE* handle, const char* type, const char* uri, enum
         return ret;
     }
 
-    hdl->file.realpath = (const char*)path;
+    hdl->file.realpath = path;
 
     struct stat st;
     ret = DO_SYSCALL(fstat, hdl->file.fd, &st);

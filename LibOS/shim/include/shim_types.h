@@ -77,9 +77,6 @@ struct __kernel_timezone {
 typedef unsigned int __kernel_uid_t;
 typedef __kernel_uid_t __kernel_uid32_t;
 
-/* quota.h */
-typedef __kernel_uid32_t qid_t; /* Type in which we store ids in memory */
-
 /* capability.h */
 typedef struct __user_cap_header_struct {
     __u32 version;

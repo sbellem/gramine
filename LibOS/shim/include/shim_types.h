@@ -77,17 +77,6 @@ struct __kernel_timezone {
 typedef unsigned int __kernel_uid_t;
 typedef __kernel_uid_t __kernel_uid32_t;
 
-/* defined in function in sysdeps/unix/sysv/linux/sysctl.c */
-struct __kernel_sysctl_args {
-    int* name;       /* integer vector describing variable */
-    int nlen;        /* length of this vector */
-    void* oldval;    /* 0 or address where to store old value */
-    size_t* oldlenp; /* available room for old value,
-                        overwritten by actual size of old value */
-    void* newval;    /* 0 or address of new value */
-    size_t newlen;   /* size of new value */
-};
-
 struct __kernel_sched_param {
     int __sched_priority;
 };

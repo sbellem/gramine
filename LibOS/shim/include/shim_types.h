@@ -189,15 +189,6 @@ struct sockaddr_storage {
     char __ss_padding[128 - sizeof(sa_family_t)];
 };
 
-/* linux/mqueue.h */
-struct __kernel_mq_attr {
-    long mq_flags;      /* message queue flags */
-    long mq_maxmsg;     /* maximum number of messages */
-    long mq_msgsize;    /* maximum message size */
-    long mq_curmsgs;    /* number of messages currently queued */
-    long __reserved[4]; /* ignored for input, zeroed for output */
-};
-
 /* bits/uio.h */
 /* Structure for scatter/gather I/O.  */
 struct iovec {

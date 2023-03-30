@@ -115,17 +115,9 @@
             # TODO: no need to delete the .wrap files
             postUnpack = ''
               ln -s ${tomlc99} source/subprojects/tomlc99-208203af46bdbdb29ba199660ed78d09c220b6c5
-              
-              rm -rf source/subprojects/uthash-2.1.0.wrap
               ln -s ${uthash} source/subprojects/uthash-2.1.0
-            
-              rm -rf source/subprojects/mbedtls-mbedtls-3.3.0.wrap
               ln -s ${mbedtls} source/subprojects/mbedtls-mbedtls-3.3.0
-              
-              rm -rf source/subprojects/curl-7.84.0.wrap
               ln -s ${curl} source/subprojects/curl-7.84.0
-              
-              rm -rf source/subprojects/cJSON-1.7.12.wrap
               ln -s ${cjson} source/subprojects/cJSON-1.7.12
             '';
               

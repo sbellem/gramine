@@ -38,13 +38,41 @@
           rev = "sgx_diver_2.14";
           sha256 = "sha256-sY7CBuMtx1ynuR5YqqseWJqxZjXiRVQpIZd7ZaNwa00=";
         };
-        
-        tomlc99 = pkgs.fetchFromGitHub {
-          owner = "cktan";
-          repo = "tomlc99";
-          rev = "208203af46bdbdb29ba199660ed78d09c220b6c5";
-          sha256 = "sha256-LTl9czE3+Bysp4MaM7GpTOuNjpYuYWa3l03t7g3AKmM=";
+
+        # gramine (pre-patched) wrapped subprojects
+        cjson = pkgs.fetchFromGitHub {
+          owner = "sbellem";
+          repo = "cjson";
+          rev = "319cca8f031e2cd615145ad9f427c94bec530583";
+          sha256 = pkgs.lib.fakeSha256;
+        };
+
+        curl = pkgs.fetchFromGitHub {
+          owner = "sbellem";
+          repo = "curl";
+          rev = "172fd98eead2ad006f7dfc684ed83223738ad9a6";
+          sha256 = pkgs.lib.fakeSha256;
+        };
+
+        mbedtls = pkgs.fetchFromGitHub {
+          owner = "sbellem";
+          repo = "mbedtls";
+          rev = "";
           #sha256 = pkgs.lib.fakeSha256;
+        };
+        
+        uthash = pkgs.fetchFromGitHub {
+          owner = "sbellem";
+          repo = "uthash";
+          rev = "";
+          #sha256 = pkgs.lib.fakeSha256;
+        };
+
+        tomlc99 = pkgs.fetchFromGitHub {
+          owner = "sbellem";
+          repo = "tomlc99";
+          rev = "98a4344e4cbea6c551c1ff4e595d30d11f09d98b";
+          sha256 = "sha256-Qz8w0XxrPxr3MO43J7ifiAZZXscWTg0WC4zFH3vKg/E=";
         };
 
         _nativeBuildInputs = with pkgs; [

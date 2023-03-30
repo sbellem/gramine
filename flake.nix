@@ -92,14 +92,28 @@
               "-Dsgx_driver=oot"
               "-Dsgx_driver_include_path=${sgxdriver}"
             ];
+
+            # TODO: revert back to nodownload
             mesonWrapMode = "default";
+
             #dontUseMesonConfigure = true;
             dontUseNinjaBuild = true;
             dontUseNinjaInstall = true;
             dontUseNinjaCheck = true;
 
+            # TODO must apply patches
+            # see https://github.com/mesonbuild/meson/blob/b30cd5d2d587546eac8b560a8c311a52d69fb53e/mesonbuild/wrap/wrap.py#L770-L810`
+            # see https://nixos.org/manual/nixpkgs/stable/#ssec-patch-phase
+            #
+            # there are 2 main steps involved:
+            #
+            # 1. copy patch dir files into the subproject repo -- there may be more than
+            #    just patch files, like a meson.build file, and other files
+            # 2. apply patches
+            #
+            #
+            # TODO: no need to delete the .wrap files
             postUnpack = ''
-              rm -f source/subprojects/tomlc99-208203af46bdbdb29ba199660ed78d09c220b6c5.wrap
               ln -s ${tomlc99} source/subprojects/tomlc99-208203af46bdbdb29ba199660ed78d09c220b6c5
               
               rm -rf source/subprojects/uthash-2.1.0.wrap

@@ -44,28 +44,30 @@
           owner = "sbellem";
           repo = "cjson";
           rev = "319cca8f031e2cd615145ad9f427c94bec530583";
-          sha256 = pkgs.lib.fakeSha256;
+          sha256 = "sha256-RoD+V6bPhRpI4Iv+7WxA/C1DYJx6PgmGF+wjW858O0o=";
         };
 
         curl = pkgs.fetchFromGitHub {
           owner = "sbellem";
           repo = "curl";
           rev = "172fd98eead2ad006f7dfc684ed83223738ad9a6";
-          sha256 = pkgs.lib.fakeSha256;
+          sha256 = "sha256-MKlRvgB4YYtqcKchy6NG3YKg17/RQQ4hwqiQ9OAhLOg=";
         };
 
         mbedtls = pkgs.fetchFromGitHub {
           owner = "sbellem";
-          repo = "mbedtls";
-          rev = "";
+          repo = "mbedtls-gramine";
+          rev = "3972d8eefc81838fb612ecc6e45118990f8c17c3";
+          fetchSubmodules = true;
           #sha256 = pkgs.lib.fakeSha256;
+          sha256 = "sha256-5rRi9fTCu70qzb4q7PxnVgVt7nbur3lCD0Uv19SxAAM=";
         };
         
         uthash = pkgs.fetchFromGitHub {
           owner = "sbellem";
           repo = "uthash";
-          rev = "";
-          #sha256 = pkgs.lib.fakeSha256;
+          rev = "c70c610befc8b2f033ad73ba64e0c8a9b0509443";
+          sha256 = "sha256-hwexk2zR8APYwYD2mhB7xtmICCJ5A5M4F7yZ6IA78uU=";
         };
 
         tomlc99 = pkgs.fetchFromGitHub {
@@ -85,6 +87,7 @@
           gawk
           glibc
           #libcurl4-openssl-dev
+          protobuf
           protobufc
           python3
           libunwind
@@ -142,11 +145,11 @@
             #
             # TODO: no need to delete the .wrap files
             postUnpack = ''
+              ln -s ${cjson} source/subprojects/cJSON-1.7.12
+              ln -s ${curl} source/subprojects/curl-7.84.0
+              ln -s ${mbedtls} source/subprojects/mbedtls-mbedtls-3.3.0
               ln -s ${tomlc99} source/subprojects/tomlc99-208203af46bdbdb29ba199660ed78d09c220b6c5
               ln -s ${uthash} source/subprojects/uthash-2.1.0
-              ln -s ${mbedtls} source/subprojects/mbedtls-mbedtls-3.3.0
-              ln -s ${curl} source/subprojects/curl-7.84.0
-              ln -s ${cjson} source/subprojects/cJSON-1.7.12
             '';
               
               #rm -rf source/subprojects/gcc-10.2.0.wrap

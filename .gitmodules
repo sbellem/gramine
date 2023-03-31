@@ -13,3 +13,7 @@
 	path = subprojects/glibc-2.36-1
 	url = https://github.com/sbellem/gramine-glibc.git
 	branch = gramine-1.4
+[submodule "subprojects/mbedtls"]
+	path = subprojects/mbedtls-mbedtls-3.3.0
+	url = https://github.com/sbellem/gramine-mbedtls.git
+	branch = gramine-1.4

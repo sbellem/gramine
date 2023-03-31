@@ -21,3 +21,11 @@
 	path = subprojects/musl-1.2.2
 	url = https://github.com/sbellem/gramine-musl.git
 	branch = gramine-1.4
+[submodule "subprojects/tomlc99"]
+	path = subprojects/tomlc99-208203af46bdbdb29ba199660ed78d09c220b6c5
+	url = https://github.com/sbellem/gramine-tomlc99.git
+	branch = gramine-1.4
+[submodule "subprojects/uthash"]
+	path = subprojects/uthash-2.1.0
+	url = https://github.com/sbellem/gramine-uthash.git
+	branch = gramine-1.4

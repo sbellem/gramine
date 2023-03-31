@@ -9,3 +9,7 @@
 	path = subprojects/curl-7.84.0
 	url = https://github.com/sbellem/curl.git
 	branch = gramine-1.4
+[submodule "subprojects/glibc"]
+	path = subprojects/glibc-2.36-1
+	url = https://github.com/sbellem/gramine-glibc.git
+	branch = gramine-1.4

@@ -1,3 +1,11 @@
 [submodule "libos/test/ltp/src"]
 	path = libos/test/ltp/src
 	url = https://github.com/linux-test-project/ltp.git
+[submodule "subprojects/cJSON"]
+	path = subprojects/cJSON-1.7.12
+	url = https://github.com/sbellem/cJSON.git
+	branch = gramine-1.4
+[submodule "subprojects/curl"]
+	path = subprojects/curl-7.84.0
+	url = https://github.com/sbellem/curl.git
+	branch = gramine-1.4

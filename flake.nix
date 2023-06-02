@@ -132,21 +132,21 @@
             nativeBuildInputs = _nativeBuildInputs;
             buildInputs = with pkgs; [ cjson ];
             enableParallelBuilding = true;
-            mesonBuildType = "release";
-            mesonFlags = [
-              "-Ddirect=enabled"
-              "-Dsgx=enabled"
-              "-Dsgx_driver=oot"
-              "-Dsgx_driver_include_path=${sgxdriver}"
-            ];
+            #mesonBuildType = "release";
+            #mesonFlags = [
+            #  "-Ddirect=enabled"
+            #  "-Dsgx=enabled"
+            #  "-Dsgx_driver=oot"
+            #  "-Dsgx_driver_include_path=${sgxdriver}"
+            #];
 
             # TODO: revert back to nodownload
             #mesonWrapMode = "default";
 
-            #dontUseMesonConfigure = true;
-            #dontUseNinjaBuild = true;
-            #dontUseNinjaInstall = true;
-            #dontUseNinjaCheck = true;
+            dontUseMesonConfigure = true;
+            dontUseNinjaBuild = true;
+            dontUseNinjaInstall = true;
+            dontUseNinjaCheck = true;
 
             # TODO must apply patches
             # see https://github.com/mesonbuild/meson/blob/b30cd5d2d587546eac8b560a8c311a52d69fb53e/mesonbuild/wrap/wrap.py#L770-L810`
@@ -169,6 +169,19 @@
             #  cp -r ${tomlc99-patched} source/subprojects/tomlc99-208203af46bdbdb29ba199660ed78d09c220b6c5
             #  cp -r ${uthash-patched} source/subprojects/uthash-2.1.0
             #'';
+            #postUnpack = ''
+            preConfigure = ''
+              meson subprojects download
+            '';
+            
+            configurePhase = ''
+              runHook preConfigure
+              runHook postConfigure
+            '';
+
+            dontBuild = true;
+            dontInstall = true;
+
               
               #rm -rf source/subprojects/gcc-10.2.0.wrap
               #ln -s ${gcc1020} source/subprojects/gcc-10.2.0
@@ -203,11 +216,11 @@
             #  runHook postInstall
             #'';
 
-            #meta = with pkgs.lib; {
-            #  homepage = "https://github.com/gramineproject/gramine";
-            #  license = with licenses; [ gpl3Only ];
-            #  maintainers = [ "sbellem" ];
-            #};
+            meta = with pkgs.lib; {
+              homepage = "https://github.com/gramineproject/gramine";
+              license = with licenses; [ gpl3Only ];
+              maintainers = [ "sbellem" ];
+            };
           };
 
           defaultPackage = self.packages.${system}.${pname};

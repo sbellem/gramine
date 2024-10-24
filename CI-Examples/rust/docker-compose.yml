@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+
+  server:
+    image: gramine-rust-example
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      SGX: 0
+      SELF_EXE: /opt/rust-hyper-http-server
+    security_opt:
+      - seccomp:../../scripts/docker_seccomp.json
+      #- seccomp:unconfined
+    ports:
+      - "53000:3000"
+    entrypoint: ""
+    command: gramine-direct rust-hyper-http-server
+
+  client:
+    image: wrk2
+    build:
+      context: .
+      dockerfile: wrk2.Dockerfile
+    depends_on:
+      server:
+        condition: service_healthy
+
+    volumes:
+      - ../common_tools/benchmark-http.sh:/usr/local/bin/benchmark-http
+    command: benchmark-http http://rustlab:3000
